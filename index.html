@@ -47,6 +47,45 @@
         color:var(--text);
         padding:10px;border-radius:12px;outline:none;
       }
+
+      /* Button hover effect */
+      button{
+        cursor:pointer;
+        transition:
+          transform .12s ease,
+          border-color .12s ease,
+          background-color .12s ease,
+          box-shadow .12s ease,
+          filter .12s ease;
+      }
+      button:hover{
+        border-color: rgba(122,167,255,.70);
+        background: rgba(22,34,68,.85);
+        box-shadow: 0 10px 22px rgba(0,0,0,.28);
+        filter: brightness(1.05);
+        transform: translateY(-1px);
+      }
+      button:active{
+        transform: translateY(0px) scale(0.99);
+        box-shadow: 0 6px 14px rgba(0,0,0,.22);
+      }
+      button:focus-visible{
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(122,167,255,.20), 0 10px 22px rgba(0,0,0,.28);
+        border-color: rgba(122,167,255,.80);
+      }
+
+      /* "Danger" button style for clear skins */
+      button.danger{
+        border-color: rgba(255,255,255,.12);
+        background: rgba(40, 10, 18, .65);
+      }
+      button.danger:hover{
+        border-color: rgba(255, 110, 140, .70);
+        background: rgba(70, 18, 32, .85);
+        box-shadow: 0 10px 22px rgba(0,0,0,.28);
+      }
+
       .row{display:flex;gap:10px}.row>*{flex:1}
       .toggleRow{display:flex;align-items:center;gap:10px;margin-top:10px}
       .toggleRow input{width:auto}
@@ -65,23 +104,14 @@
         color:var(--muted);font-size:12px;max-width:70%;
         pointer-events:none;
       }
-
-      /* Credits */
       #credits{
-        position:absolute;
-        right:12px;
-        bottom:12px;
-        padding:8px 10px;
-        border-radius:12px;
+        position:absolute;right:12px;bottom:12px;
+        padding:8px 10px;border-radius:12px;
         background: rgba(15,23,48,.75);
         border:1px solid rgba(255,255,255,.10);
-        color: var(--muted);
-        font-size:12px;
-        pointer-events:none;
-        max-width:70%;
-        text-align:right;
+        color:var(--muted);font-size:12px;max-width:70%;
+        pointer-events:none;text-align:right;
       }
-
       .thumb{border:1px solid rgba(255,255,255,.12);border-radius:12px;overflow:hidden;cursor:pointer;background: rgba(11,16,32,.75)}
       .thumb.selected{outline:2px solid rgba(122,167,255,.85)}
       .thumb img{display:block;width:100%;height:auto;image-rendering:pixelated}
@@ -175,6 +205,11 @@
           <button id="nextSkin" type="button">Next</button>
         </div>
 
+        <!-- Added: Clear skins option -->
+        <div class="btnRow">
+          <button id="clearSkinsBtn" class="danger" type="button">Clear skins</button>
+        </div>
+
         <label>Bulk list</label>
         <div id="bulkGrid"></div>
         <small id="bulkStatus"></small>
@@ -185,13 +220,10 @@
       <section class="panel" id="viewerWrap">
         <div id="skin_container">
           <div id="status">Loading viewer…</div>
-          <div id="credits">• Discord: nq9x • Minecraft IGN: qMila</div>
+          <div id="credits">Discord: nq9x • Minecraft IGN: qMila</div>
         </div>
       </section>
     </main>
-
-    <!-- Default skin path for JS to read on first load -->
-    <meta id="default-skin" data-url="/default-skin.png" />
 
     <script type="module" src="/src/main.js"></script>
   </body>
